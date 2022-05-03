@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script>
+      setTimeout(function(){
+     window.location.href = './';
+    }, 40000);
+    </script>
+    <title>Candidates of Palghar</title>
+  </head>
+  <body>
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <a class="navbar-brand">e-Voting Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about/">About Us</a>
+                    </li>
+                     <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="candidate" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Candidate List
+                        </a>
+                        <ul class="dropdown-menu list-group-item-action" aria-labelledby="/navbarDropdown">
+                            <li><a class="dropdown-item constituency_list c_one" href="/candidateaura/">Amroha</a></li>
+                             <li><a class="dropdown-item constituency_list c_two" href="/candidatepalg/">Palghar</a></li>
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Constituency List
+                        </a>
+                        <ul class="dropdown-menu list-group-item-action" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item constituency_list c_one" href="/amroha/">Amroha</a></li>
+                            <li><a class="dropdown-item constituency_list c_two" href="/palghar/">Palghar</a></li> <li>
+
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<br><br><br><br>
+  <h1 class="text-center my-3">Candidate's details</h1>
+   <form method="post">
+       {% csrf_token %}
+<figure class="text-center my-4">
+<div class="w-50 p-3 h-75 d-inline-block">
+
+<table class="table">
+  <thead>
+    <tr class="my-4">
+      <th scope="col" style="background-color: #e8f2fa;">#</th>
+      <th scope="col"  style="background-color: #e8f2fa;">Name</th>
+      <th scope="col" style="background-color: #e8f2fa;">Age</th>
+        <th scope="col"  style="background-color: #e8f2fa;">Party</th>
+      <th scope="col" style="background-color: #e8f2fa;">Constituency</th>
+<!--    <th scope="col"  style="background-color: #e8f2fa;">Button</th>-->
+    </tr>
+  </thead>
+  <tbody>
+  {% for task in task %}
+    <tr class="my-4">
+      <td scope="row" > {{ forloop.counter }}</td>
+      <td>{{ task.name }}</td>
+      <td>{{ task.age }}</td>
+        <td>{{ task.party }}</td>
+        <td>{{ task.constituency }}</td>
+<!--        <td ><button class="btn btn-outline-success"><strong>VOTE</strong></button></td>-->
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+        </div>
+        </figure>
+   </form>
+
+<figure class="text-center">
+    <div class="w-50 p-5 h-75 d-inline-block">
+        <button class="btn btn-outline-success m-4 btn-lg" data-bs-toggle="modal" data-bs-target="#uid1Modal" ><strong>VOTE </strong>for CMD</button>
+        <button class="btn btn-outline-success m-4 btn-lg " data-bs-toggle="modal" data-bs-target="#uid2Modal"><strong>VOTE </strong>for HMT</button>
+        <button class="btn btn-outline-success m-4 btn-lg" data-bs-toggle="modal" data-bs-target="#uid3Modal" ><strong>VOTE </strong>for AMD</button>
+    </div>
+</figure>
+
+
+
+
+
+<div class="modal fade" id="uid1Modal" tabindex="-1" role="dialog" aria-labelledby="uid1ModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uid1ModalLabel">Fill in the details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="UID1">UID</label>
+                            <input type="text-box" class="form-control" id="UID1" name="UID1">
+                        </div>
+                         <input type="submit" id="but1" name="but1" class="btn btn-primary" value="Submit">
+                        <button type="reset" class="btn btn-primary my-4">Reset</button>
+                       </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="modal fade" id="uid2Modal" tabindex="-1" role="dialog" aria-labelledby="uid2ModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uid2ModalLabel">Fill in the details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="UID2">UID</label>
+                            <input type="text-box" class="form-control" id="UID2" name="UID2">
+                        </div>
+                         <input type="submit" id="but2" name="but2" class="btn btn-primary" value="Submit">
+                        <button type="reset" class="btn btn-primary my-4">Reset</button>
+                       </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+   <div class="modal fade" id="uid3Modal" tabindex="-1" role="dialog" aria-labelledby="uid3ModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uid3ModalLabel">Fill in the details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="UID3">UID</label>
+                            <input type="text-box" class="form-control" id="UID3" name="UID3">
+                        </div>
+                         <input type="submit" id="but3" name="but3" class="btn btn-primary" value="Submit">
+                        <button type="reset" class="btn btn-primary my-4">Reset</button>
+                       </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        -->
+<!--        -->
+<!--        <div class="col-lg-6">-->
+<!--    <table  class="table"><tbody>-->
+<!--        <thead>Vote </thead>-->
+<!--        <tr>-->
+<!--            <button class="btn btn-outline-success"><strong>VOTE</strong></button>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <button class="btn btn-outline-success"><strong>VOTE</strong></button>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <button class="btn btn-outline-success"><strong>VOTE</strong></button>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</figure>-->
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
